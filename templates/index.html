@@ -78,19 +78,13 @@
 
         <section class="cat-facts">
             <h2>Curiosidades Sobre Gatos</h2>
-            <div class="facts-container">
+            <div class="facts-container" id="facts-container">
+                {% for fact in facts %}
                 <div class="fact">
-                    <i class="fas fa-heart"></i>
-                    <p>Gatos passam 70% de suas vidas dormindo</p>
+                    <i class="fas {{ fact.icon }}"></i>
+                    <p>{{ fact.fact }}</p>
                 </div>
-                <div class="fact">
-                    <i class="fas fa-paw"></i>
-                    <p>Um grupo de gatos é chamado de "gataria"</p>
-                </div>
-                <div class="fact">
-                    <i class="fas fa-fish"></i>
-                    <p>Gatos têm 32 músculos em cada orelha</p>
-                </div>
+                {% endfor %}
             </div>
         </section>
     </main>

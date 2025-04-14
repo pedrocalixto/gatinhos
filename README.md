@@ -1,15 +1,23 @@
 # Galeria de Gatinhos Fofos
 
-Uma aplicação web Flask que exibe uma galeria de fotos de gatos fofos.
+Uma aplicação web Flask que exibe uma galeria de fotos de gatos fofos com curiosidades que mudam dinamicamente a cada 10 segundos.
 
 ## Tecnologias Utilizadas
 
 - Python 3.9
 - Flask 3.1.0
+- SQLAlchemy (banco de dados)
 - HTML5
 - CSS3
 - JavaScript
 - Docker
+
+## Funcionalidades
+
+- Galeria de fotos de gatos
+- Curiosidades sobre gatos que mudam automaticamente a cada 10 segundos
+- API REST para fornecer curiosidades aleatórias
+- Banco de dados SQLite para armazenamento escalável de curiosidades
 
 ## Como Executar Localmente
 
@@ -58,6 +66,8 @@ Uma aplicação web Flask que exibe uma galeria de fotos de gatos fofos.
 ```
 flask_app/
 ├── app.py                  # Aplicação Flask principal
+├── models.py               # Modelos de banco de dados
+├── cat_facts.db            # Banco de dados SQLite
 ├── requirements.txt        # Dependências Python
 ├── Dockerfile              # Configuração para construir a imagem Docker
 ├── docker-compose.yml      # Configuração para Docker Compose
@@ -70,6 +80,18 @@ flask_app/
     ├── index.html          # Página inicial
     └── about.html          # Página sobre
 ```
+
+## API Endpoints
+
+- `GET /api/facts/random`: Retorna 3 curiosidades aleatórias sobre gatos
+
+## Escalabilidade
+
+Este projeto foi projetado pensando em escalabilidade:
+
+1. **Banco de dados**: Usa SQLAlchemy que permite migrar facilmente para PostgreSQL ou MySQL
+2. **Arquitetura API**: Separação clara entre frontend e backend
+3. **Containerização**: Pronto para implantação em qualquer plataforma que suporte Docker
 
 ## Implantação
 
