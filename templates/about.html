@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre - Galeria de Gatinhos Fofos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-cat"></i> Galeria de Gatinhos
+            </div>
+            <ul>
+                <li><a href="/">Início</a></li>
+                <li><a href="/about" class="active">Sobre</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="hero">
+            <h1>Sobre Nossa Galeria</h1>
+            <p>Saiba mais sobre nossa missão de compartilhar os gatinhos mais fofos com o mundo</p>
+        </section>
+
+        <section class="about-content">
+            <div class="about-card">
+                <h2><i class="fas fa-heart"></i> Nossa Missão</h2>
+                <p>A Galeria de Gatinhos Fofos foi criada com uma missão simples: trazer alegria através de fotos adoráveis de gatos. Acreditamos que uma dose diária de fofura pode alegrar o dia de qualquer pessoa e tornar o mundo um lugar melhor.</p>
+            </div>
+
+            <div class="about-card">
+                <h2><i class="fas fa-camera"></i> As Fotos</h2>
+                <p>Todas as fotos em nossa galeria são de uso livre do Pixabay, um maravilhoso serviço que fornece imagens gratuitas. Em um aplicativo real, apresentaríamos fotos enviadas por usuários ou imagens devidamente licenciadas.</p>
+            </div>
+
+            <div class="about-card">
+                <h2><i class="fas fa-code"></i> A Tecnologia</h2>
+                <p>Este site foi construído usando Flask, um framework web leve em Python, junto com HTML, CSS e JavaScript. Ele demonstra como criar uma aplicação web simples, mas visualmente atraente.</p>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Galeria de Gatinhos Fofos | Todas as imagens do Pixabay</p>
+    </footer>
+    
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
