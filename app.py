@@ -14,26 +14,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Inicializa o banco de dados
 db.init_app(app)
 
-@app.route('/')
-def home():
-    # Passa 3 curiosidades iniciais para a página
-    facts = CatFact.get_random(3)
-    return render_template('index.html', facts=facts)
-
-@app.route('/about')
-def about():
-    return render_template('about.html')
-
-@app.route('/api/facts/random', methods=['GET'])
-def random_facts():
-    """API endpoint para obter curiosidades aleatórias."""
-    facts = CatFact.get_random(3)
-    return jsonify([{
-        'id': fact.id,
-        'fact': fact.fact,
-        'icon': fact.icon
-    } for fact in facts])
-
 # Função para inicializar o banco de dados com algumas curiosidades
 def init_db():
     with app.app_context():
@@ -71,6 +51,46 @@ def init_db():
             db.session.commit()
             print("Banco de dados inicializado com 20 curiosidades sobre gatos!")
 
+# Inicializa o banco de dados antes de qualquer requisição
+with app.app_context():
+    try:
+        db.create_all()
+        # Verifica se já existem dados
+        if CatFact.query.count() == 0:
+            init_db()
+            print("Banco de dados inicializado com sucesso!")
+        else:
+            print("Banco de dados já existe e contém dados.")
+    except Exception as e:
+        print(f"Erro ao inicializar o banco de dados: {e}")
+
+@app.route('/')
+def home():
+    # Tenta obter curiosidades, se falhar, retorna uma lista vazia
+    try:
+        facts = CatFact.get_random(3)
+    except Exception as e:
+        print(f"Erro ao obter curiosidades: {e}")
+        facts = []
+    return render_template('index.html', facts=facts)
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/api/facts/random', methods=['GET'])
+def random_facts():
+    """API endpoint para obter curiosidades aleatórias."""
+    try:
+        facts = CatFact.get_random(3)
+        return jsonify([{
+            'id': fact.id,
+            'fact': fact.fact,
+            'icon': fact.icon
+        } for fact in facts])
+    except Exception as e:
+        print(f"Erro na API de curiosidades: {e}")
+        return jsonify([]), 500
+
 if __name__ == '__main__':
-    init_db()  # Inicializa o banco de dados antes de iniciar o servidor
     app.run(debug=True, host='0.0.0.0', port=8080)
